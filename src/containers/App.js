@@ -27,27 +27,25 @@ class App extends Component {
   }
 
   render() {
-    const filteredKitties = this.state.kitties.filter(kitty => {
+    const { kitties, searchfield } = this.state
+    const filteredKitties = kitties.filter(kitty => {
       return kitty.name
       .toLowerCase()
-      .includes(this.state.searchfield.toLowerCase())
+      .includes(searchfield.toLowerCase())
     })
-    if (this.state.kitties.length === 0) {
-      return <h1 className='tc mt7'>Loading</h1>
-    } else {
-      return(
-        <div className='tc'>
-          <h1 className='f1'>Kitty Finder</h1>
-          <SearchBox searchChange={this.onSearchChange}/>
-          <hr />
-          <Scroll>
-          <CardList kitties={ filteredKitties }/>
-          </Scroll>
-        </div>
-        )
+      return !kitties.length ? 
+      <h1 className='tc mt7 f1'>Loading</h1> : 
+      (
+      <div className='tc'>
+        <h1 className='f1'>Kitty Finder</h1>
+        <SearchBox searchChange={this.onSearchChange}/>
+        <hr />
+        <Scroll>
+        <CardList kitties={ filteredKitties }/>
+        </Scroll>
+      </div>
+      )
     }
-    
   }
-}
 
 export default App
