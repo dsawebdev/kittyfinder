@@ -12,6 +12,7 @@ const CardList = ({ kitties }) => {
             id={kitties[i].id}  
             fullName={kitties[i].name}  
             email={kitties[i].email} 
+            catchPhrase={kitties[i].company.catchPhrase}
           />
           )
         })

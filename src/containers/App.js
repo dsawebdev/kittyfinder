@@ -19,7 +19,6 @@ class App extends Component {
       .then(response => response.json())
       .then(users => this.setState({ kitties: users}))
     }, 2000)
-    
   }
 
   onSearchChange = (event) => {
@@ -28,20 +27,21 @@ class App extends Component {
 
   render() {
     const { kitties, searchfield } = this.state
+
     const filteredKitties = kitties.filter(kitty => {
       return kitty.name
       .toLowerCase()
       .includes(searchfield.toLowerCase())
     })
-      return !kitties.length ? 
-      <h1 className='tc mt7 f1'>Loading</h1> : 
+
+      return !kitties.length ? <h1 className='tc mt7 f1'>Loading</h1> : 
       (
       <div className='tc'>
         <h1 className='f1'>Kitty Finder</h1>
         <SearchBox searchChange={this.onSearchChange}/>
         <hr />
         <Scroll>
-        <CardList kitties={ filteredKitties }/>
+          <CardList kitties={ filteredKitties }/>
         </Scroll>
       </div>
       )
